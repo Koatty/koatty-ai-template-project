@@ -15,3 +15,7 @@ npm run dev
 npm run build
 npm start
 ```
+
+生产构建使用 `koatty manifest --runtime-dir dist --out .koatty/manifest.json --validate`。
+将 `.koatty/manifest.json` 与 `dist/` 一起部署；修改产物后必须重新生成清单。
+此模板需要包含运行时清单功能的 `koatty_cli >=4.3.0`，须先发布对应 CLI 版本。

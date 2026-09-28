@@ -14,7 +14,7 @@ import { App } from '../App';
  *   options — { targetMethod: string, target: 被拦截的目标实例, ... }
  *
  * 注意区分：
- *   this.app       — KoattyApplication 实例（全局单例）
+ *   this.app       — 当前应用的 KoattyApplication 实例
  *   options.target  — 被 AOP 拦截的目标实例（per-request）
  *                    通过 options.target.ctx 可获取当前请求的 KoattyContext
  *
@@ -23,7 +23,7 @@ import { App } from '../App';
  */
 @Aspect()
 export class AuthAspect implements IAspect {
-  app: App;
+  app!: App;
 
   async run(args: any[], proceed?: Function, options?: any): Promise<any> {
     const ctx: KoattyContext = options?.target?.ctx;
@@ -31,7 +31,7 @@ export class AuthAspect implements IAspect {
       throw new Error('Unauthorized: unable to get request context');
     }
 
-    const token = ctx.requestHeader('Authorization')?.replace(/^Bearer\s+/i, '');
+    const token = ctx.get('Authorization').replace(/^Bearer\s+/i, '');
     if (!token) {
       throw new Error('Unauthorized: missing token');
     }
@@ -40,7 +40,7 @@ export class AuthAspect implements IAspect {
     try {
       const payload = this.verifyToken(token);
       // 将用户信息挂载到 ctx，后续 Controller / Service 可通过 ctx 获取
-      ctx.user = payload;
+      ctx.state.user = payload;
     } catch {
       throw new Error('Unauthorized: invalid token');
     }

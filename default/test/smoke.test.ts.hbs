@@ -1,0 +1,29 @@
+/**
+ * Smoke test skeleton (roadmap Phase E, item E-4: "测试即规格").
+ *
+ * `npm test` must work from a freshly generated project, so this file only
+ * exercises the jest + ts-jest wiring. Replace it with real tests.
+ *
+ * HTTP example with koatty_testing (add `koatty_testing` and `supertest` to
+ * devDependencies first):
+ *
+ *   import { createTestApp, createHttpTest } from 'koatty_testing';
+ *   import App from '../src/App';
+ *
+ *   let request: ReturnType<typeof createHttpTest>;
+ *
+ *   beforeAll(async () => {
+ *     const app = await createTestApp(App, { env: { NODE_ENV: 'test' } });
+ *     request = createHttpTest(app.app);
+ *   });
+ *
+ *   it('answers GET /', async () => {
+ *     const response = await request.get('/');
+ *     expect(response.status).toBe(200);
+ *   });
+ */
+describe('{{projectName}}', () => {
+  it('has a working jest + ts-jest setup', () => {
+    expect(true).toBe(true);
+  });
+});

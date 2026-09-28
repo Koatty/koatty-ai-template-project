@@ -4,7 +4,7 @@
   "description": "application created by koatty",
   "main": "dist/App.js",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc && koatty manifest --runtime-dir dist --out .koatty/manifest.json --validate",
     "dev": "tsx watch ./src/App.ts",
     "start": "npm run build && cross-env NODE_ENV=production node ./dist/App.js",
     "test": "jest --passWithNoTests --detectOpenHandles",
@@ -17,6 +17,8 @@
     "tslib": "^2.6.0"
   },
   "devDependencies": {
+    "koatty_cli": "^4.3.0",
+    "@types/jest": "^29.5.0",
     "@types/node": "^22.0.0",
     "cross-env": "^7.0.0",
     "jest": "^29.0.0",

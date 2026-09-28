@@ -3,7 +3,7 @@ import { App } from '../App';
 
 @Controller('/')
 export class IndexController {
-  app: App;
+  app!: App;
   ctx: KoattyContext;
 
   constructor(ctx: KoattyContext) {
@@ -12,6 +12,6 @@ export class IndexController {
 
   @GetMapping('/')
   async index() {
-    return this.ok('Hello, Koatty!');
+    return { message: 'Hello, Koatty!' };
   }
 }
