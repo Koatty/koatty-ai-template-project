@@ -8,14 +8,22 @@
  * devDependencies first):
  *
  *   import { createTestApp, createHttpTest } from 'koatty_testing';
- *   import App from '../src/App';
+ *   import { Koatty } from 'koatty';
+ *   import * as path from 'path';
+ *   // Compile first. Do not import the auto-starting @Bootstrap() application.
+ *   class TestApp extends Koatty {
+ *     init() { this.rootPath = process.cwd(); this.appPath = path.join(process.cwd(), 'dist'); }
+ *   }
+ *   let app: Awaited<ReturnType<typeof createTestApp>>;
  *
  *   let request: ReturnType<typeof createHttpTest>;
  *
  *   beforeAll(async () => {
- *     const app = await createTestApp(App, { env: { NODE_ENV: 'test' } });
+ *     app = await createTestApp(TestApp, { env: { NODE_ENV: 'test' } });
  *     request = createHttpTest(app.app);
  *   });
+ *
+ *   afterAll(async () => { await app?.stop(); });
  *
  *   it('answers GET /', async () => {
  *     const response = await request.get('/');

@@ -9,7 +9,7 @@
 - `src/controller/` — Controller：只做参数解析与结果返回。
 - `src/service/` — Service：业务逻辑、事务、外部依赖调用。
 - `src/model/` — 数据模型 / TypeORM 实体。
-- `src/dto/` — 入参 DTO（`koatty_validation` 装饰器校验）。
+- `src/dto/` — 入参 DTO（`@Validated` 调用 DTO 校验；属性约束从 `class-validator` 导入）。
 - `src/middleware/`、`src/plugin/`、`src/aspect/` — 中间件、插件、切面。
 - `src/config/` — 配置文件（按需增删，`config.ts` 决定加载顺序）。
 - `test/` — 测试（`*.test.ts`），由 `jest.config.js` 收集。
@@ -30,7 +30,7 @@ npx koatty g:m user    # 生成完整 CRUD 模块（含 test/user.test.ts 骨架
 
 1. `npx koatty g:m <module> --api rest` 生成 Controller/Service/Model/DTO/测试骨架；
 2. 在 `src/service/<Module>Service.ts` 写业务逻辑；
-3. Controller 只负责调用 Service 并 `return this.ok(data)`；
+3. Controller 只负责调用 Service 并 `return data`；
 4. 在 `test/<module>.test.ts` 补行为测试，`npm test` 必须通过。
 
 ## 4. 禁止事项（AI guardrails）
