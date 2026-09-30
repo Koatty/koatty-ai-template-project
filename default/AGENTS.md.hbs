@@ -19,16 +19,18 @@
 ```bash
 npm run dev            # tsx watch 启动
 npm test               # jest + ts-jest（test/ 目录）
-npm run lint           # eslint --fix
+npm run lint           # eslint，只检查
 npm run build          # 编译 dist/ 并生成带 SHA-256 文件指纹的生产清单
 npx koatty manifest    # 导出应用清单（组件/路由/DTO/配置键名，不含配置值）
 npx koatty mcp         # 以 MCP stdio 方式接入 Cursor / Claude Code
-npx koatty g:m user    # 生成完整 CRUD 模块（含 test/user.test.ts 骨架）
+npx koatty capabilities --json # 发现实际安装版本的能力
+npx koatty doctor --json       # 检查项目配置和依赖
+npx koatty verify --checks types,test --json # 编译检查和行为测试
 ```
 
 ## 3. 如何新增路由 / 服务
 
-1. `npx koatty g:m <module> --api rest` 生成 Controller/Service/Model/DTO/测试骨架；
+1. 读取 `.agents/skills/koatty/references/development.md`，编写 Spec，使用 `plan --spec <file> --save-plan --json` 预览并取得计划 ID，再用 `apply --plan <id> --yes --json` 应用；
 2. 在 `src/service/<Module>Service.ts` 写业务逻辑；
 3. Controller 只负责调用 Service 并 `return data`；
 4. 在 `test/<module>.test.ts` 补行为测试，`npm test` 必须通过。

@@ -7,17 +7,23 @@
     "build": "rimraf dist && tsc && koatty manifest --runtime-dir dist --out .koatty/manifest.json --validate",
     "dev": "tsx watch ./src/App.ts",
     "start": "npm run build && cross-env NODE_ENV=production node ./dist/App.js",
-    "test": "jest --passWithNoTests --detectOpenHandles",
-    "lint": "eslint 'src/**/*.ts' --fix"
+    "test": "npm run build && jest --detectOpenHandles",
+    "lint": "eslint 'src/**/*.ts'"
   },
   "engines": { "node": ">=18.0.0" },
   "license": "BSD-3-Clause",
   "dependencies": {
-    "koatty": "^4.0.0",
+    "koatty": "^5.0.0",
     "tslib": "^2.6.0"
   },
   "devDependencies": {
-    "koatty_cli": "^5.0.0",
+    "koatty_cli": "^5.1.0",
+    "koatty_testing": "^5.0.0",
+    "supertest": "^7.0.0",
+    "@types/supertest": "^6.0.0",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^22.0.0",
     "cross-env": "^7.0.0",

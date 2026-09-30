@@ -19,3 +19,5 @@ npm start
 生产构建使用 `koatty manifest --runtime-dir dist --out .koatty/manifest.json --validate`。
 将 `.koatty/manifest.json` 与 `dist/` 一起部署；修改产物后必须重新生成清单。
 此模板需要包含运行时清单功能的 `koatty_cli >=4.3.0`，须先发布对应 CLI 版本。
+
+AI Agent 指南见 `.agents/skills/koatty/SKILL.md`。使用本项目安装的 CLI，先检查 `capabilities --json`；新增能力尚需对应版本发布，不能仅依据版本号推断可用性。
